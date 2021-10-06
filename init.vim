@@ -7,6 +7,12 @@ set autoindent
 set tabstop=4
 set concealcursor="nc"
 set conceallevel=2
+let g:coc_global_extensions = [
+\   'coc-vimtex',
+\   'coc-spell-checker',
+\   'coc-clangd'
+\   ]
+
 
 "automated installation of vimplug if not installed
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))

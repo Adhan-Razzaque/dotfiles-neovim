@@ -5,6 +5,8 @@ set shiftwidth=4
 set smartindent
 set autoindent
 set tabstop=4
+set concealcursor="nc"
+set conceallevel=2
 
 "automated installation of vimplug if not installed
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))

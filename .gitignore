@@ -1,2 +1,4 @@
 # Ignore plugged directory
 /plugged/
+
+.netrwhist

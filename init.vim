@@ -14,6 +14,16 @@ let g:coc_global_extensions = [
 \   'coc-clangd'
 \   ]
 
+" VimTex specific config
+filetype plugin indent on
+syntax enable
+
+"Using SumatraPDF
+if has('win32')
+    let g:vimtex_view_general_viewer = 'sumatraPDF'
+    let g:vimtex_view_general_options
+        \ = '-reuse-instance -forward-search @tex @line @pdf'
+endif
 
 "automated installation of vimplug if not installed
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))

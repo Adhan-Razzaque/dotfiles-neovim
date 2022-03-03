@@ -18,21 +18,28 @@ let g:coc_global_extensions = [
 filetype plugin indent on
 syntax enable
 
-"Using SumatraPDF
+" Windows Config
 if has('win32')
+    " SumatraPDF
     let g:vimtex_view_general_viewer = 'sumatraPDF'
     let g:vimtex_view_general_options
         \ = '-reuse-instance -forward-search @tex @line @pdf'
+
+
 endif
 
-"automated installation of vimplug if not installed
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source ~/.config/nvim/init.vim
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin('~/.config/nvim/plugged')
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+
+call plug#begin()
 
 "plugins here, coc for example
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }

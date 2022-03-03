@@ -24,8 +24,13 @@ if has('win32')
     let g:vimtex_view_general_viewer = 'sumatraPDF'
     let g:vimtex_view_general_options
         \ = '-reuse-instance -forward-search @tex @line @pdf'
+endif
 
-
+" Mac Config
+if has('macunix')
+    " Skim
+    let g:vimtex_compiler_progname='nvr'
+    let g:vimtex_view_method='skim'
 endif
 
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
